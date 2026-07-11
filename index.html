@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABsoluTéc — Soluções Técnicas, resultados Sustentáveis.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde: #30B27F;
+    --verde-deep:#22935F;
+    --grafite:#1E293B;
+    --grafite-2:#0F172A;
+    --slate:#64748B;
+    --off:#F8FAFC;
+    --white:#FFFFFF;
+    --line:#E2E8F0;
+    --mint:#F0FDF4;
+    --amber:#F59E0B;
+    --blue:#3B82F6;
+    --r-sm:8px; --r-md:12px; --r-lg:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--grafite);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  h1,h2,h3,h4{font-weight:700;letter-spacing:-0.02em;color:var(--grafite);}
+
+  .mark{
+    width:38px;height:38px;border-radius:11px;
+    background:var(--white);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;gap:3px;
+    flex:none;
+  }
+  .mark i{width:4px;border-radius:2px;background:var(--grafite);display:block;}
+  .mark i:nth-child(1){height:14px;}
+  .mark i:nth-child(2){height:20px;background:var(--verde);}
+  .mark i:nth-child(3){height:14px;}
+
+  .wordmark{font-size:19px;font-weight:500;letter-spacing:-0.02em;color:var(--grafite);}
+  .wordmark b{color:var(--verde);font-weight:600;}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .navlinks{display:flex;gap:30px;font-size:14px;font-weight:500;}
+  .navlinks a{text-decoration:none;color:var(--slate);transition:color .2s;}
+  .navlinks a:hover{color:var(--grafite);}
+  .nav-cta{
+    padding:10px 22px;border-radius:999px;background:var(--grafite);
+    color:#fff;font-size:14px;font-weight:600;text-decoration:none;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--verde-deep);}
+  @media(max-width:820px){.navlinks{display:none;}}
+
+  .btn{padding:14px 26px;border-radius:10px;font-weight:600;font-size:15px;
+    text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;}
+  .btn-primary{background:var(--verde);color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(48,178,127,0.3);}
+  .btn-dark{background:var(--grafite);color:#fff;}
+  .btn-dark:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(30,41,59,0.25);}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--grafite);}
+  .btn-ghost:hover{border-color:var(--grafite);transform:translateY(-2px);}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .hero{position:relative;overflow:hidden;padding:88px 0 70px;border-bottom:1px solid var(--line);background:
+    radial-gradient(600px 300px at 85% -10%, rgba(48,178,127,0.10), transparent);}
+  .hero::after{
+    content:'';position:absolute;z-index:-1;
+    width:620px;height:620px;top:-220px;right:-160px;border-radius:50%;
+    background:radial-gradient(circle, rgba(48,178,127,0.16), rgba(59,130,246,0.05) 55%, transparent 72%);
+    animation: heroGlowDrift 13s ease-in-out infinite;
+  }
+  @keyframes heroGlowDrift{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    50%{ transform:translate(-36px,26px) scale(1.08); }
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;}
+  @media(max-width:960px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--verde-deep);background:var(--mint);padding:7px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--verde);animation: livePulse 2.2s infinite;}
+  @keyframes livePulse{
+    0%  { box-shadow: 0 0 0 0 rgba(48,178,127,0.45); }
+    70% { box-shadow: 0 0 0 7px rgba(48,178,127,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(48,178,127,0); }
+  }
+  .live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--verde);margin-right:5px;animation: livePulse 2.2s infinite;}
+  .hero h1{font-size:clamp(34px,4.4vw,50px);line-height:1.08;margin-bottom:22px;}
+  .hero h1 b{color:var(--verde);font-weight:700;}
+  .hero p.lead{font-size:18px;color:var(--slate);max-width:480px;margin-bottom:32px;}
+
+  /* --- light dashboard mockup (laptop + phone), based on real product screens --- */
+  .devices-wrap{width:100%;display:flex;justify-content:center;}
+  .devices{position:relative;width:460px;flex:none;padding-right:36px;padding-bottom:30px;
+    animation: floatSlow 7s ease-in-out infinite;}
+  @media(max-width:960px){.devices{zoom:0.82;}}
+  @media(max-width:640px){.devices{zoom:0.68;}}
+  @media(max-width:420px){.devices{zoom:0.58;}}
+  @keyframes floatSlow{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-11px); }
+  }
+  @keyframes floatFast{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-7px); }
+  }
+  .laptop{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 30px 60px -20px rgba(15,23,42,0.18);overflow:hidden;
+    width:100%;
+  }
+  .l-topbar{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line);}
+  .l-topbar .mark{width:26px;height:26px;border-radius:8px;}
+  .l-topbar .mark i:nth-child(1),.l-topbar .mark i:nth-child(3){height:9px;}
+  .l-topbar .mark i:nth-child(2){height:13px;}
+  .l-topbar .wordmark{font-size:13px;}
+  .l-body{display:flex;}
+  .l-side{width:120px;border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:4px;}
+  .l-item{font-size:10px;font-weight:600;color:var(--slate);padding:7px 9px;border-radius:7px;}
+  .l-item.on{background:var(--mint);color:var(--verde-deep);border-left:2px solid var(--verde);}
+  .l-main{flex:1;padding:16px 18px;background:var(--off);}
+  .l-hi{font-size:13px;font-weight:700;margin-bottom:2px;}
+  .l-sub{font-size:10px;color:var(--slate);margin-bottom:12px;}
+  .l-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;}
+  .l-kpi{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px;}
+  .l-kpi .n{font-size:15px;font-weight:800;color:var(--grafite);}
+  .l-kpi .l{font-size:8px;color:var(--slate);margin-top:2px;}
+  .l-kpi .d{font-size:7.5px;color:var(--verde-deep);font-weight:700;}
+  .l-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+  .l-card{background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px;}
+  .l-card h5{font-size:9.5px;margin-bottom:8px;color:var(--grafite);}
+  .donut{width:56px;height:56px;border-radius:50%;margin:0 auto;
+    background:conic-gradient(var(--blue) 0 40%, var(--verde) 40% 70%, var(--amber) 70% 90%, var(--slate) 90% 100%);
+    position:relative;}
+  .donut::after{content:'';position:absolute;inset:9px;background:#fff;border-radius:50%;}
+  .l-bars{display:flex;align-items:flex-end;gap:5px;height:48px;}
+  .l-bars i{flex:1;border-radius:3px 3px 0 0;background:var(--verde);display:block;opacity:.85;}
+  .l-bars i:nth-child(2){background:var(--blue);}
+  .l-bars i:nth-child(3){background:var(--amber);}
+  .l-bars i:nth-child(4){background:var(--slate);opacity:.6;}
+  .l-alert{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 10px;margin-bottom:6px;font-size:9px;}
+  .l-alert span:last-child{color:var(--slate);}
+
+  .device-phone{
+    position:absolute; right:-14px; bottom:-24px; width:150px;
+    background:#0f172a;border-radius:22px;padding:6px;
+    box-shadow:0 20px 40px -10px rgba(15,23,42,0.3);
+    animation: floatFast 5s ease-in-out infinite;
+  }
+  .p-screen{background:#fff;border-radius:16px;padding:11px;}
+  .p-top{display:flex;justify-content:space-between;font-size:8px;font-weight:700;color:var(--grafite);margin-bottom:8px;}
+  .p-brand{display:flex;align-items:center;gap:5px;margin-bottom:8px;}
+  .p-brand .mark{width:16px;height:16px;border-radius:5px;}
+  .p-brand .mark i:nth-child(1),.p-brand .mark i:nth-child(3){height:5px;}
+  .p-brand .mark i:nth-child(2){height:8px;}
+  .p-brand span{font-size:9px;font-weight:600;}
+  .p-hi{font-size:9px;font-weight:700;}
+  .p-sub{font-size:7px;color:var(--slate);margin-bottom:8px;}
+  .p-hero{background:var(--verde);border-radius:10px;padding:10px;margin-bottom:8px;color:#fff;}
+  .p-hero .l{font-size:7.5px;opacity:.85;}
+  .p-hero .n{font-size:16px;font-weight:800;}
+  .p-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;}
+  .p-tile{background:var(--off);border:1px solid var(--line);border-radius:7px;padding:6px;font-size:7px;font-weight:600;text-align:center;}
+  .p-alert{display:flex;justify-content:space-between;background:var(--off);border-radius:7px;padding:6px 8px;font-size:6.8px;margin-bottom:4px;}
+  .p-alert b{color:#DC2626;}
+
+  section{padding:84px 0;}
+  .section-head{max-width:620px;margin-bottom:48px;}
+  .k{font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--verde-deep);margin-bottom:14px;display:block;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;}
+  .section-head p{color:var(--slate);margin-top:14px;font-size:16.5px;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media(max-width:800px){.split{grid-template-columns:1fr;}}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;box-shadow:0 4px 20px -6px rgba(15,23,42,0.04);}
+  .card h3{font-size:19px;margin-bottom:10px;}
+  .card p{color:var(--slate);font-size:15px;}
+  .card .tag{font-size:12px;font-weight:700;color:var(--verde-deep);text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px;display:block;}
+
+  /* modules: connector line composition echoing the reference image */
+  .mod-preview{display:flex;justify-content:center;gap:48px;margin-bottom:8px;flex-wrap:wrap;}
+  .mini{position:relative;}
+  .mini-desktop{width:220px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 30px -10px rgba(15,23,42,0.12);overflow:hidden;}
+  .mini-desktop .bar{height:8px;background:var(--off);border-bottom:1px solid var(--line);}
+  .mini-desktop .body{padding:10px;}
+  .mini-desktop .row{display:flex;gap:6px;margin-bottom:6px;}
+  .mini-desktop .chip{flex:1;height:20px;background:var(--off);border-radius:5px;}
+  .mini-desktop .chip.on{background:var(--mint);}
+  .mini-phone{width:80px;height:140px;background:#0f172a;border-radius:14px;padding:4px;}
+  .mini-phone .s{background:#fff;height:100%;border-radius:10px;padding:6px;}
+  .mini-phone .s .t{height:5px;width:60%;background:var(--verde);border-radius:2px;margin-bottom:6px;}
+  .mini-phone .s .b{height:16px;background:var(--off);border-radius:4px;margin-bottom:4px;}
+  .connector{width:1px;height:34px;background:var(--line);margin:0 auto;}
+  .connector.green{background:var(--verde);}
+
+  .mods{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:860px){.mods{grid-template-columns:1fr;}}
+  .mod{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;box-shadow:0 4px 20px -6px rgba(15,23,42,0.04);text-align:center;}
+  .mod-icon{width:64px;height:64px;margin:0 auto 18px;background:var(--off);border-radius:16px;padding:12px;}
+  .mod h3{font-size:18px;margin-bottom:10px;}
+  .mod p{color:var(--slate);font-size:14.5px;text-align:left;}
+
+  /* audiences — light cards now, no dark backgrounds */
+  .aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:860px){.aud-grid{grid-template-columns:1fr;}}
+  .aud{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;box-shadow:0 4px 20px -6px rgba(15,23,42,0.04);}
+  .aud-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-weight:800;color:#fff;font-size:16px;}
+  .aud:nth-child(1) .aud-icon{background:var(--verde);}
+  .aud:nth-child(2) .aud-icon{background:var(--blue);}
+  .aud:nth-child(3) .aud-icon{background:var(--grafite);}
+  .aud h3{font-size:18px;margin-bottom:10px;}
+  .aud p{color:var(--slate);font-size:14.5px;}
+  .aud .chip{display:inline-block;font-size:12px;font-weight:600;background:var(--off);color:var(--slate);padding:4px 12px;border-radius:999px;margin-bottom:16px;}
+
+  .road{display:flex;gap:0;overflow-x:auto;padding-bottom:8px;}
+  .road-stage{min-width:210px;flex:1;padding:0 20px 0 0;position:relative;}
+  .road-stage:not(:last-child)::after{content:'';position:absolute;top:11px;right:0;width:20px;height:1px;background:var(--line);}
+  .road-dot{width:22px;height:22px;border-radius:50%;background:var(--grafite);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-bottom:16px;}
+  .road-stage.active .road-dot{background:var(--verde);}
+  .road-stage h4{font-size:14.5px;margin-bottom:8px;}
+  .road-stage p{font-size:13px;color:var(--slate);}
+
+  .biz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media(max-width:900px){.biz-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.biz-grid{grid-template-columns:1fr;}}
+  .biz{border:1px solid var(--line);border-radius:var(--r-md);padding:22px;background:var(--white);}
+  .biz .eyebrow-sm{font-size:11px;font-weight:700;color:var(--verde-deep);text-transform:uppercase;letter-spacing:.04em;}
+  .biz h4{margin-top:8px;font-size:16px;}
+
+  .mvv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;}
+  @media(max-width:800px){.mvv-grid{grid-template-columns:1fr;}}
+  .mvv{background:var(--white);padding:32px;}
+  .mvv .letter{width:36px;height:36px;border-radius:9px;background:var(--verde);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:16px;}
+  .mvv h4{font-size:16px;margin-bottom:8px;}
+  .mvv p{font-size:14px;color:var(--slate);}
+
+  /* CTA — lightened, no full dark panel */
+  .cta{background:var(--mint);border:1px solid #BBF7D0;border-radius:var(--r-lg);padding:56px 48px;text-align:center;}
+  @media(max-width:640px){.cta{padding:40px 24px;}}
+  .cta h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:16px;}
+  .cta p{color:var(--slate);max-width:460px;margin:0 auto 32px;font-size:16px;}
+
+  footer{background:var(--verde-deep);padding:44px 0;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;}
+  @media(max-width:700px){.foot-grid{grid-template-columns:1fr;}}
+  .foot-grid h5{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,0.65);margin-bottom:14px;}
+  .foot-grid p, .foot-grid a{font-size:14.5px;color:#fff;text-decoration:none;display:block;margin-bottom:8px;}
+  .foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .foot-bottom p{font-size:13px;color:rgba(255,255,255,0.75);}
+  footer .mark{background:#fff;border-color:rgba(255,255,255,0.4);}
+  footer .wordmark{color:#fff;}
+  footer .wordmark b{color:#DFFFEF;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .hero::after, .devices, .device-phone, .eyebrow::before, .live-dot{ animation:none; }
+  }
+
+  /* ===== Preloader (tela de carregamento com a animação da marca) ===== */
+  html.pl-locked, html.pl-locked body{ overflow:hidden; height:100%; }
+
+  #preloader{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--white);
+    display:flex; justify-content:center; align-items:center;
+    transition: opacity .45s ease, visibility .45s ease;
+    /* Sumiço garantido só com CSS — se o JS não rodar por algum motivo
+       (preview de editor, CMS que remove <script>, etc.), a tela de
+       carregamento ainda assim desaparece sozinha depois deste tempo. */
+    animation: pl-autoHide 2.6s ease forwards;
+  }
+  @keyframes pl-autoHide{
+    0%   { opacity:1; visibility:visible; }
+    75%  { opacity:1; visibility:visible; }
+    100% { opacity:0; visibility:hidden; }
+  }
+  #preloader.pl-hide{ opacity:0; visibility:hidden; pointer-events:none; }
+
+  .pl-anim{ position:relative; width:340px; height:120px; --dur:1.3s; --t0:1.1s; }
+  @media(max-width:560px){ .pl-anim{ transform:scale(.72); } }
+  @media(max-width:380px){ .pl-anim{ transform:scale(.58); } }
+
+  .pl-stage{
+    position:absolute; inset:0; display:flex; justify-content:center; align-items:center;
+    animation: pl-stageOut .18s ease forwards; animation-delay: var(--t0);
+  }
+  .pl-bar{ position:absolute; width:12px; height:50px; border-radius:6px; background:var(--grafite); opacity:0; }
+  .pl-bar-center{ background:var(--verde); z-index:2; height:70px; }
+
+  @keyframes pl-barLeft{
+    0%   { transform: translate(-35px, 40px) scaleY(0) rotate(0deg); opacity:0; }
+    22%  { transform: translate(-35px, 0)     scaleY(1) rotate(0deg); opacity:1; }
+    46%  { transform: translate(-35px, 0)     scaleY(1) rotate(0deg); opacity:1; }
+    62%  { transform: translate(-18px, -5px)  scaleY(1) rotate(30deg); opacity:1; }
+    76%  { transform: translate(-18px, -5px)  scaleY(1) rotate(30deg); opacity:1; }
+    100% { transform: translate(-18px, -5px)  scaleY(1) rotate(30deg); opacity:0; }
+  }
+  @keyframes pl-barRight{
+    0%   { transform: translate(35px, 40px) scaleY(0) rotate(0deg); opacity:0; }
+    24%  { transform: translate(35px, 0)     scaleY(1) rotate(0deg); opacity:1; }
+    46%  { transform: translate(35px, 0)     scaleY(1) rotate(0deg); opacity:1; }
+    62%  { transform: translate(18px, -5px)  scaleY(1) rotate(-30deg); opacity:1; }
+    76%  { transform: translate(18px, -5px)  scaleY(1) rotate(-30deg); opacity:1; }
+    100% { transform: translate(18px, -5px)  scaleY(1) rotate(-30deg); opacity:0; }
+  }
+  @keyframes pl-barCenter{
+    0%   { width:12px; height:0;   transform: translateY(40px); opacity:0; border-radius:6px; }
+    20%  { width:12px; height:70px; transform: translateY(0);   opacity:1; border-radius:6px; }
+    46%  { width:12px; height:70px; transform: translateY(0);   opacity:1; border-radius:6px; }
+    58%  { width:12px; height:12px; transform: translateY(0);   opacity:1; border-radius:6px; }
+    70%  { width:55px; height:8px;  transform: translateY(0);   opacity:1; border-radius:4px; }
+    88%  { width:340px; height:4px; transform: translateY(0) translateX(0); opacity:1; border-radius:2px; }
+    100% { width:340px; height:4px; transform: translateY(0) translateX(0); opacity:0; border-radius:2px; }
+  }
+  .pl-bar-left  { animation: pl-barLeft   var(--dur) cubic-bezier(0.22,1,0.36,1) forwards; }
+  .pl-bar-right { animation: pl-barRight  var(--dur) cubic-bezier(0.22,1,0.36,1) forwards; animation-delay:.03s; }
+  .pl-bar-center{ animation: pl-barCenter var(--dur) cubic-bezier(0.22,1,0.36,1) forwards; animation-delay:.015s; }
+  @keyframes pl-stageOut{ to{ opacity:0; visibility:hidden; } }
+
+  .pl-final{
+    position:absolute; inset:0; display:flex; justify-content:center; align-items:center; gap:16px;
+    opacity:0; transform:translateX(10px);
+    animation: pl-finalIn .35s cubic-bezier(0.22,1,0.36,1) forwards; animation-delay: var(--t0);
+  }
+  @keyframes pl-finalIn{ to{ opacity:1; transform:translateX(0); } }
+
+  .pl-final-icon{
+    width:46px; height:46px; opacity:0; transform:scale(.5);
+    animation: pl-iconIn .28s var(--fluid-ease, cubic-bezier(0.34,1.56,0.64,1)) forwards;
+    animation-delay: calc(var(--t0) + .35s);
+  }
+  @keyframes pl-iconIn{ to{ opacity:1; transform:scale(1); } }
+
+  .pl-final-text{
+    font-size:2.7rem; font-weight:500; color:var(--verde); letter-spacing:-1px; white-space:nowrap;
+    clip-path: inset(0 100% 0 0);
+    animation: pl-uncover .42s cubic-bezier(0.22,1,0.36,1) forwards;
+    animation-delay: calc(var(--t0) + .035s);
+  }
+  .pl-final-text span{ font-weight:800; }
+  @keyframes pl-uncover{ to{ clip-path: inset(0 0 0 0); } }
+
+  @media (prefers-reduced-motion: reduce){
+    #preloader{ transition:none; }
+    .pl-stage{ display:none; }
+    .pl-final{ opacity:1; transform:none; animation:none; }
+    .pl-final-icon{ opacity:1; transform:none; animation:none; }
+    .pl-final-text{ clip-path:none; animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="preloader" aria-hidden="true">
+  <div class="pl-anim">
+    <div class="pl-stage">
+      <div class="pl-bar pl-bar-left"></div>
+      <div class="pl-bar pl-bar-center"></div>
+      <div class="pl-bar pl-bar-right"></div>
+    </div>
+    <div class="pl-final">
+      <svg class="pl-final-icon" viewBox="0 0 100 100">
+        <rect x="20" y="25" width="12" height="50" rx="6" fill="#1E293B"/>
+        <rect x="44" y="15" width="12" height="70" rx="6" fill="#30B27F"/>
+        <rect x="68" y="25" width="12" height="50" rx="6" fill="#1E293B"/>
+      </svg>
+      <div class="pl-final-text">ABsolu<span>Téc</span></div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand">
+        <div class="mark"><i></i><i></i><i></i></div>
+        <span class="wordmark">ABsolu<b>Téc</b></span>
+      </div>
+      <div class="navlinks">
+        <a href="#sobre">O problema</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#publicos">Para quem</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#negocio">Negócio</a>
+      </div>
+      <a href="#sobre" class="nav-cta">Sobre</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Gestão ambiental digital</span>
+      <h1>Soluções técnicas, <b>resultados sustentáveis.</b></h1>
+      <p class="lead">A ABsoluTéc automatiza conformidade, resíduos e auditorias ambientais em uma única infraestrutura digital — para empresas, profissionais técnicos e órgãos públicos.</p>
+      <div class="btn-row">
+        <a href="#sobre" class="btn btn-dark">Sobre</a>
+        <a href="#contato" class="btn btn-ghost">Fale conosco</a>
+      </div>
+    </div>
+    <div class="devices-wrap">
+    <div class="devices">
+      <div class="laptop">
+        <div class="l-topbar">
+          <div class="mark"><i></i><i></i><i></i></div>
+          <span class="wordmark">ABsolu<b>Téc</b></span>
+        </div>
+        <div class="l-body">
+          <div class="l-side">
+            <div class="l-item on">Dashboard</div>
+            <div class="l-item">Licenças</div>
+            <div class="l-item">Resíduos</div>
+            <div class="l-item">Auditorias</div>
+            <div class="l-item">Indicadores</div>
+            <div class="l-item">Relatórios</div>
+            <div class="l-item">Alertas</div>
+          </div>
+          <div class="l-main">
+            <div class="l-hi">Painel de gestão ambiental</div>
+            <div class="l-sub"><span class="live-dot"></span>Visão geral em tempo real</div>
+            <div class="l-kpis">
+              <div class="l-kpi"><div class="n">24</div><div class="l">Licenças ativas</div><div class="d">+12%</div></div>
+              <div class="l-kpi"><div class="n">12,5t</div><div class="l">Resíduos geridos</div><div class="d">+8%</div></div>
+              <div class="l-kpi"><div class="n">8</div><div class="l">Auditorias</div><div class="d">+5%</div></div>
+              <div class="l-kpi"><div class="n">92%</div><div class="l">Conformidade</div><div class="d">+15%</div></div>
+            </div>
+            <div class="l-row">
+              <div class="l-card">
+                <h5>Conformidade por categoria</h5>
+                <div class="donut"></div>
+              </div>
+              <div class="l-card">
+                <h5>Resíduos por tipo</h5>
+                <div class="l-bars">
+                  <i style="height:80%"></i><i style="height:55%"></i><i style="height:35%"></i><i style="height:65%"></i>
+                </div>
+              </div>
+            </div>
+            <div class="l-alert"><span>Licença LP nº 123/2024 vence em 15 dias</span><span>10/05</span></div>
+            <div class="l-alert"><span>Relatório de resíduos de abril pendente</span><span>08/05</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="device-phone">
+        <div class="p-screen">
+          <div class="p-top"><span>9:41</span><span>●●●</span></div>
+          <div class="p-brand"><div class="mark"><i></i><i></i><i></i></div><span>ABsoluTéc</span></div>
+          <div class="p-hi">Olá!</div>
+          <div class="p-sub">Painel de gestão ambiental</div>
+          <div class="p-hero"><div class="l">Conformidade geral</div><div class="n">92%</div></div>
+          <div class="p-grid">
+            <div class="p-tile">Licenças</div>
+            <div class="p-tile">Resíduos</div>
+            <div class="p-tile">Auditorias</div>
+            <div class="p-tile">Relatórios</div>
+          </div>
+          <div class="p-alert"><span>Licença <b>vence em 15 dias</b></span></div>
+          <div class="p-alert"><span>Relatório <b>pendente</b></span></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="k">O contexto</span>
+      <h2>Um setor essencial, operando no manual.</h2>
+    </div>
+    <div class="split">
+      <div class="card">
+        <span class="tag">O problema</span>
+        <h3>Processos manuais, dados fragmentados</h3>
+        <p>Profissionais ambientais atuam sem um ecossistema estruturado para emissão de relatórios, acompanhamento de empresas e gestão regulatória — grande parte ainda depende de deslocamentos físicos e burocracia, dificultando a integração entre empresas, técnicos, órgãos públicos e fiscalização.</p>
+      </div>
+      <div class="card">
+        <span class="tag">A oportunidade</span>
+        <h3>Um gigante econômico sem infraestrutura</h3>
+        <p>O mercado ambiental brasileiro movimenta recursos expressivos, mas ainda caminha com pernas de papel — resultando em insegurança jurídica, desperdício de recursos e atraso no desenvolvimento sustentável real do país.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modulos" style="background:var(--off);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="k">A plataforma</span>
+      <h2>Três módulos, uma infraestrutura completa.</h2>
+      <p>Automatize sua conformidade e gestão de resíduos industriais numa única plataforma SaaS.</p>
+    </div>
+
+    <div class="mod-preview">
+      <div class="mini">
+        <div class="mini-phone">
+          <div class="s">
+            <div class="t"></div>
+            <div class="b" style="height:34px;"></div>
+            <div class="b"></div>
+            <div class="b" style="width:70%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mini">
+        <div class="mini-desktop">
+          <div class="bar"></div>
+          <div class="body">
+            <div class="row"><div class="chip on"></div><div class="chip"></div></div>
+            <div class="row"><div class="chip"></div><div class="chip on"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-around;max-width:900px;margin:0 auto;">
+      <div class="connector green"></div><div class="connector"></div><div class="connector green"></div>
+    </div>
+
+    <div class="mods">
+      <div class="mod">
+        <svg class="mod-icon" viewBox="0 0 100 100">
+          <path d="M 25,50 C 10,25 40,25 50,50 C 60,75 90,75 75,50 C 60,25 40,25 25,50" fill="none" stroke="#1E293B" stroke-width="10" stroke-linecap="round"/>
+          <path d="M 75,50 C 60,25 40,25 25,50" fill="none" stroke="#30B27F" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="5" fill="#1E293B"/>
+        </svg>
+        <h3>Ciclo de Resíduos</h3>
+        <p>Monitoramento e rastreamento completo de fluxos de resíduos em tempo real, com geração automática de Planos de Gerenciamento de Resíduos Sólidos (PGRS) com conformidade legal.</p>
+      </div>
+      <div class="mod">
+        <svg class="mod-icon" viewBox="0 0 100 100">
+          <rect x="25" y="25" width="12" height="50" rx="6" fill="#1E293B"/>
+          <rect x="44" y="15" width="12" height="70" rx="6" fill="#30B27F"/>
+          <rect x="63" y="25" width="12" height="50" rx="6" fill="#1E293B"/>
+        </svg>
+        <h3>Indicadores SaaS</h3>
+        <p>Geração automática de relatórios de sustentabilidade e painéis executivos com indicadores de desempenho, prontos para exportação e auditoria.</p>
+      </div>
+      <div class="mod">
+        <svg class="mod-icon" viewBox="0 0 100 100">
+          <rect x="15" y="35" width="6" height="30" rx="3" fill="#1E293B"/>
+          <rect x="27" y="25" width="6" height="50" rx="3" fill="#30B27F"/>
+          <rect x="39" y="15" width="6" height="70" rx="3" fill="#1E293B"/>
+          <rect x="51" y="15" width="6" height="70" rx="3" fill="#30B27F"/>
+          <rect x="63" y="25" width="6" height="50" rx="3" fill="#1E293B"/>
+          <rect x="75" y="35" width="6" height="30" rx="3" fill="#30B27F"/>
+        </svg>
+        <h3>Segurança Normativa</h3>
+        <p>Garantia de conformidade jurídica com as normas ambientais vigentes, monitoramento preventivo e blindagem para auditorias de alta complexidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publicos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="k">Para quem</span>
+      <h2>Três públicos, uma única plataforma.</h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud">
+        <div class="aud-icon">E</div>
+        <span class="chip">Empresas</span>
+        <h3>Conformidade sem dor de cabeça</h3>
+        <p>Centralização de documentos, licenças e processos ambientais, com alertas de vencimento e checklist de auditoria em tempo real.</p>
+      </div>
+      <div class="aud">
+        <div class="aud-icon">P</div>
+        <span class="chip">Profissionais técnicos</span>
+        <h3>Toda a carteira, num só painel</h3>
+        <p>Acompanhamento de licenças e status de todas as empresas sob responsabilidade técnica, com dashboard próprio e alertas de prazos.</p>
+      </div>
+      <div class="aud">
+        <div class="aud-icon">O</div>
+        <span class="chip">Órgãos públicos</span>
+        <h3>Fiscalização com dados em tempo real</h3>
+        <p>Mapa de conformidade por município, ranking de índices ambientais e histórico de ações de fiscalização, tudo georreferenciado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap" style="background:var(--off);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="k">Roadmap estratégico</span>
+      <h2>Da estruturação à visão nacional.</h2>
+    </div>
+    <div class="road">
+      <div class="road-stage active">
+        <div class="road-dot">1</div>
+        <h4>Estruturação e MVP</h4>
+        <p>Identidade, módulos de licenciamento, auditorias e resíduos, dashboard de conformidade, validação com profissionais.</p>
+      </div>
+      <div class="road-stage">
+        <div class="road-dot">2</div>
+        <h4>Validação</h4>
+        <p>Piloto em empresas locais, integração de PGRS e biomonitoramento, captação de clientes recorrentes.</p>
+      </div>
+      <div class="road-stage">
+        <div class="road-dot">3</div>
+        <h4>Expansão</h4>
+        <p>Expansão regional, módulo institucional para órgãos ambientais, painel de fiscalização estadual.</p>
+      </div>
+      <div class="road-stage">
+        <div class="road-dot">4</div>
+        <h4>Consolidação</h4>
+        <p>Parcerias públicas e institucionais, expansão para outros estados, IA para auditorias ambientais.</p>
+      </div>
+      <div class="road-stage">
+        <div class="road-dot">5</div>
+        <h4>Visão futura</h4>
+        <p>Plataforma nacional integrada, referência em economia circular, inteligência ambiental baseada em dados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="negocio">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="k">Modelo de negócio</span>
+      <h2>Receita recorrente, com escalabilidade.</h2>
+    </div>
+    <div class="biz-grid">
+      <div class="biz"><span class="eyebrow-sm">SaaS</span><h4>Assinaturas mensais</h4></div>
+      <div class="biz"><span class="eyebrow-sm">Módulos premium</span><h4>BI + IA + analytics</h4></div>
+      <div class="biz"><span class="eyebrow-sm">Marketplace</span><h4>Comissão sobre resíduos</h4></div>
+      <div class="biz"><span class="eyebrow-sm">Institucional</span><h4>Contratos com órgãos públicos e privados</h4></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--off);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="k">Missão, visão e valores</span>
+      <h2>Por que existimos.</h2>
+    </div>
+    <div class="mvv-grid">
+      <div class="mvv"><div class="letter">M</div><h4>Missão</h4><p>Inovar a gestão ambiental, promovendo eficiência, conformidade e economia circular.</p></div>
+      <div class="mvv"><div class="letter">V</div><h4>Visão</h4><p>Ser referência nacional em gestão ambiental digital e desenvolvimento sustentável.</p></div>
+      <div class="mvv"><div class="letter">V</div><h4>Valores</h4><p>Inovação, sustentabilidade, ética, eficiência, economia circular e valorização dos profissionais ambientais.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <div class="cta">
+      <span class="eyebrow">Vamos conversar</span>
+      <h2>Automatize sua conformidade ambiental hoje.</h2>
+      <p>Empresa, profissional técnico ou órgão público — fale com a ABsoluTéc e leve a gestão ambiental para o digital.</p>
+      <a href="mailto:absolutecdigital@gmail.com" class="btn btn-primary">Fale com a ABsoluTéc →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="mark"><i></i><i></i><i></i></div>
+          <span class="wordmark">ABsolu<b>Téc</b></span>
+        </div>
+        <p style="color:rgba(255,255,255,0.75);max-width:280px;">Soluções Técnicas, resultados Sustentáveis.<br>Automatize sua conformidade ambiental.</p>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <a href="mailto:absolutecdigital@gmail.com">absolutecdigital@gmail.com</a>
+        <a href="tel:+5583991175542">(83) 99117-5542</a>
+      </div>
+      <div>
+        <h5>Empresa</h5>
+        <a href="#modulos">Módulos</a>
+        <a href="#publicos">Para quem</a>
+        <a href="#negocio">Modelo de negócio</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 ABsoluTéc Digital</p>
+      <p>Soluções Técnicas, resultados Sustentáveis.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    try{
+      var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var root = document.documentElement;
+      var preloader = document.getElementById('preloader');
+      if (!preloader) return;
+
+      root.classList.add('pl-locked'); // trava o scroll enquanto a animação roda
+
+      function reveal(){
+        root.classList.remove('pl-locked');
+        if (preloader && preloader.parentNode){
+          preloader.classList.add('pl-hide');
+          setTimeout(function(){
+            if (preloader.parentNode) preloader.remove();
+          }, 500);
+        }
+      }
+
+      setTimeout(reveal, reduce ? 250 : 1950);
+      // rede de segurança: mesmo que algo falhe acima, garante que o scroll
+      // nunca fique travado por muito tempo.
+      setTimeout(function(){ root.classList.remove('pl-locked'); }, 3000);
+    } catch(e){
+      // se qualquer coisa no JS falhar, o CSS (pl-autoHide) já garante
+      // que a tela de carregamento some sozinha.
+      document.documentElement.classList.remove('pl-locked');
+    }
+  })();
+</script>
+
+</body>
+</html>
