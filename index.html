@@ -115,7 +115,8 @@
     0%,100%{ transform:translate(0,0) scale(1); }
     50%{ transform:translate(-36px,26px) scale(1.08); }
   }
-  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:0.92fr 1.22fr;gap:56px;align-items:center;}
+  .hero-grid > *{min-width:0;}
   @media(max-width:960px){.hero-grid{grid-template-columns:1fr;}}
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
@@ -133,11 +134,12 @@
   .hero p.lead{font-size:18px;color:var(--slate);max-width:480px;margin-bottom:32px;}
 
   /* --- light dashboard mockup (laptop + phone), based on real product screens --- */
-  .devices-wrap{width:100%;display:flex;justify-content:center;}
-  .devices{position:relative;width:460px;flex:none;padding-right:36px;padding-bottom:30px;transform-origin:top center;}
-  @media(max-width:960px){.devices{transform:scale(0.82);}}
-  @media(max-width:640px){.devices{transform:scale(0.72);}}
-  @media(max-width:420px){.devices{transform:scale(0.62);}}
+  .devices-wrap{width:100%;display:flex;justify-content:center;max-width:100%;}
+  .devices{
+    position:relative; flex:none; padding-right:44px; padding-bottom:30px;
+    width:min(640px, 100%);
+  }
+  @media(min-width:961px){ .devices{ margin-left:auto; } }
   @keyframes floatSlow{
     0%,100%{ transform:translateY(0); }
     50%{ transform:translateY(-11px); }
@@ -182,15 +184,21 @@
 
   /* Selo "isso é interativo" perto do mockup */
   .try-badge{
-    position:absolute;top:-18px;right:18px;z-index:5;
-    display:flex;align-items:center;gap:7px;background:var(--grafite);color:#fff;
-    font-size:11.5px;font-weight:700;padding:9px 16px;border-radius:999px;
-    box-shadow:0 14px 28px -10px rgba(15,23,42,.35);white-space:nowrap;
+    position:absolute;top:-30px;left:50%;transform:translateX(-50%);z-index:5;
+    display:flex;align-items:center;gap:10px;
+    background:linear-gradient(100deg, var(--verde) 0%, var(--verde-deep) 100%);color:#fff;
+    font-size:15px;font-weight:800;padding:14px 24px;border-radius:999px;
+    box-shadow:0 16px 34px -10px rgba(48,178,127,.55), 0 0 0 5px rgba(48,178,127,.14);
+    white-space:nowrap;letter-spacing:-0.01em;
     animation:tryBounce 2.4s ease-in-out infinite;
   }
-  .try-badge .pulse{width:7px;height:7px;border-radius:50%;background:var(--verde);animation:livePulse 2.2s infinite;flex:none;}
-  @keyframes tryBounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
-  @media(max-width:960px){ .try-badge{top:-14px;right:8px;font-size:10px;padding:7px 12px;} }
+  .try-badge svg{width:17px;height:17px;stroke:#fff;flex:none;}
+  .try-badge .pulse{width:9px;height:9px;border-radius:50%;background:#fff;flex:none;position:relative;}
+  .try-badge .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #fff;animation:tryPulseRing 1.8s ease-out infinite;}
+  @keyframes tryPulseRing{ 0%{transform:scale(.6);opacity:.9;} 100%{transform:scale(2.1);opacity:0;} }
+  @keyframes tryBounce{ 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(-6px);} }
+  @media(max-width:960px){ .try-badge{top:-26px;font-size:12.5px;padding:11px 18px;gap:8px;} .try-badge svg{width:14px;height:14px;} }
+  @media(max-width:480px){ .try-badge{white-space:normal;text-align:center;max-width:88%;top:-40px;} }
   .try-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--verde-deep);text-decoration:none;}
   .try-link:hover{text-decoration:underline;}
   @media (prefers-reduced-motion: reduce){ .try-badge{animation:none;} }
@@ -493,7 +501,6 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Gestão ambiental digital</span>
       <h1>Soluções técnicas, <b>resultados sustentáveis.</b></h1>
       <p class="lead">A ABsoluTéc automatiza conformidade, resíduos e auditorias ambientais em uma única infraestrutura digital — para empresas, profissionais técnicos e órgãos públicos.</p>
       <div class="btn-row">
@@ -503,7 +510,10 @@
     </div>
     <div class="devices-wrap">
     <div class="devices">
-      <div class="try-badge"><span class="pulse"></span>Clique e explore — é o sistema de verdade</div>
+      <div class="try-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 3v2m0 14v2m10-10h-2M5 12H3m14.14-6.86l-1.41 1.41M6.27 17.73l-1.41 1.41m12.28 0l-1.41-1.41M6.27 6.27L4.86 4.86"/><circle cx="12" cy="12" r="4"/></svg>
+        <span class="pulse"></span>Clique e explore — é o sistema de verdade
+      </div>
       <div class="laptop">
         <div class="l-topbar">
           <div class="mark"><i></i><i></i><i></i></div>
@@ -1019,4 +1029,3 @@
 
 </body>
 </html>
-
