@@ -7,18 +7,18 @@
 <meta name="description" content="O ecossistema digital para gestão ambiental — licenças, resíduos e auditorias automatizados numa só plataforma, para empresas, profissionais técnicos e órgãos públicos.">
 
 <!-- ===== Open Graph / prévia ao compartilhar (Instagram, WhatsApp, etc.) =====
-     IMPORTANTE: troque "https://seusite.com/" pela URL real do site depois de publicado,
-     e suba o arquivo og-image.png na mesma pasta do index.html. -->
+     URL real já configurada. Falta só subir o arquivo og-image.png (1200x630)
+     na MESMA pasta do index.html no repositório do GitHub Pages. -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="ABsoluTéc — Soluções técnicas, resultados sustentáveis.">
 <meta property="og:description" content="O ecossistema digital para gestão ambiental — licenças, resíduos e auditorias automatizados numa só plataforma.">
-<meta property="og:image" content="https://seusite.com/og-image.png">
-<meta property="og:url" content="https://seusite.com/">
+<meta property="og:image" content="https://absolutecdigital.github.io/Landing-page-ABsoluT-c-Digital-/og-image.png">
+<meta property="og:url" content="https://absolutecdigital.github.io/Landing-page-ABsoluT-c-Digital-/">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ABsoluTéc — Soluções técnicas, resultados sustentáveis.">
 <meta name="twitter:description" content="O ecossistema digital para gestão ambiental — licenças, resíduos e auditorias automatizados numa só plataforma.">
-<meta name="twitter:image" content="https://seusite.com/og-image.png">
+<meta name="twitter:image" content="https://absolutecdigital.github.io/Landing-page-ABsoluT-c-Digital-/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -184,21 +184,23 @@
 
   /* Selo "isso é interativo" perto do mockup */
   .try-badge{
-    position:absolute;top:-30px;left:50%;transform:translateX(-50%);z-index:5;
-    display:flex;align-items:center;gap:10px;
-    background:linear-gradient(100deg, var(--verde) 0%, var(--verde-deep) 100%);color:#fff;
-    font-size:15px;font-weight:800;padding:14px 24px;border-radius:999px;
-    box-shadow:0 16px 34px -10px rgba(48,178,127,.55), 0 0 0 5px rgba(48,178,127,.14);
-    white-space:nowrap;letter-spacing:-0.01em;
-    animation:tryBounce 2.4s ease-in-out infinite;
+    position:absolute;z-index:6;
+    left:2%; bottom:-22px;
+    display:flex;align-items:center;gap:8px;
+    background:linear-gradient(120deg, var(--verde) 0%, var(--verde-deep) 100%);color:#fff;
+    font-size:11.5px;font-weight:800;line-height:1.25;padding:13px 16px;
+    width:150px;
+    border-radius:14px;
+    box-shadow:0 14px 28px -10px rgba(48,178,127,.55);
+    animation:tryBounce 2.6s ease-in-out infinite;
   }
-  .try-badge svg{width:17px;height:17px;stroke:#fff;flex:none;}
-  .try-badge .pulse{width:9px;height:9px;border-radius:50%;background:#fff;flex:none;position:relative;}
+  .try-badge svg{width:15px;height:15px;stroke:#fff;flex:none;}
+  .try-badge .pulse{width:8px;height:8px;border-radius:50%;background:#fff;flex:none;position:relative;}
   .try-badge .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #fff;animation:tryPulseRing 1.8s ease-out infinite;}
   @keyframes tryPulseRing{ 0%{transform:scale(.6);opacity:.9;} 100%{transform:scale(2.1);opacity:0;} }
-  @keyframes tryBounce{ 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(-6px);} }
-  @media(max-width:960px){ .try-badge{top:-26px;font-size:12.5px;padding:11px 18px;gap:8px;} .try-badge svg{width:14px;height:14px;} }
-  @media(max-width:480px){ .try-badge{white-space:normal;text-align:center;max-width:88%;top:-40px;} }
+  @keyframes tryBounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
+  @media(max-width:960px){ .try-badge{width:128px;font-size:10.5px;padding:10px 13px;bottom:-18px;} .try-badge svg{width:13px;height:13px;} }
+  @media(max-width:480px){ .try-badge{width:112px;font-size:9.5px;padding:9px 11px;left:1%;bottom:-14px;} }
   .try-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--verde-deep);text-decoration:none;}
   .try-link:hover{text-decoration:underline;}
   @media (prefers-reduced-motion: reduce){ .try-badge{animation:none;} }
